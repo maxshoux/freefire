@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Rewards - Claim Your Diamonds!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c1a3a, #1a3a6c);
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect fill="rgba(255,255,255,0.05)" width="100" height="100"/></svg>');
+            background-size: 20px 20px;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            background: linear-gradient(to right, #ff9d00, #ffce00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #a0b3e0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #ffce00;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #ff9d00, #ffce00);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .login-section, .profile-section {
+            flex: 1;
+            background: rgba(16, 30, 61, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 206, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .login-section:hover, .profile-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffce00;
+        }
+        
+        .section-title i {
+            background: linear-gradient(45deg, #ff9d00, #ffce00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #a0b3e0;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 206, 0, 0.3);
+            background: rgba(10, 20, 40, 0.5);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffce00;
+            box-shadow: 0 0 0 3px rgba(255, 206, 0, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(45deg, #ff9d00, #ffce00);
+            color: #0c1a3a;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 157, 0, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            background: linear-gradient(45deg, #ff9d00, #ffce00);
+            transform: translateY(-3px);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 206, 0, 0.2);
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #ffce00;
+            overflow: hidden;
+            background: linear-gradient(45deg, #1a3a6c, #0c1a3a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #ffce00;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-info h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #ffce00;
+        }
+        
+        .user-info p {
+            color: #a0b3e0;
+            margin-bottom: 10px;
+        }
+        
+        .level-bar {
+            height: 10px;
+            background: rgba(255, 206, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .level-progress {
+            height: 100%;
+            width: 75%;
+            background: linear-gradient(to right, #ff9d00, #ffce00);
+            border-radius: 5px;
+        }
+        
+        .rewards-section {
+            margin-top: 30px;
+        }
+        
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .reward-card {
+            background: rgba(10, 20, 40, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 206, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .reward-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: #ffce00;
+        }
+        
+        .reward-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #ffce00;
+        }
+        
+        .reward-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        
+        .reward-desc {
+            font-size: 14px;
+            color: #a0b3e0;
+            margin-bottom: 10px;
+        }
+        
+        .reward-btn {
+            background: rgba(255, 206, 0, 0.2);
+            color: #ffce00;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .reward-btn:hover {
+            background: linear-gradient(45deg, #ff9d00, #ffce00);
+            color: #0c1a3a;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .stat-card {
+            background: rgba(10, 20, 40, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 206, 0, 0.2);
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffce00;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #a0b3e0;
+        }
+        
+        .diamonds {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffce00"><path d="M12 2L2 9l10 7-10 7 10-7 10 7-10-7 10-7z"/></svg>');
+            background-size: contain;
+            opacity: 0.6;
+            z-index: -1;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #a0b3e0;
+            border-top: 1px solid rgba(255, 206, 0, 0.1);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .rewards-grid, .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated diamonds in background -->
+    <div class="diamonds" style="top: 10%; left: 5%; animation: float 8s infinite ease-in-out;"></div>
+    <div class="diamonds" style="top: 20%; right: 15%; animation: float 10s infinite ease-in-out; width: 40px; height: 40px;"></div>
+    <div class="diamonds" style="bottom: 30%; left: 20%; animation: float 12s infinite ease-in-out; width: 25px; height: 25px;"></div>
+    <div class="diamonds" style="top: 40%; right: 5%; animation: float 9s infinite ease-in-out;"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-img">🔥</div>
+                <h1>Free Fire Rewards</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-gift"></i> Rewards</a>
+                <a href="#"><i class="fas fa-trophy"></i> Events</a>
+                <a href="#"><i class="fas fa-store"></i> Shop</a>
+                <a href="#"><i class="fas fa-headset"></i> Support</a>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <!-- Login Section -->
+            <section class="login-section">
+                <h2 class="section-title"><i class="fas fa-sign-in-alt"></i> Login to Your Account</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> Player ID / Username</label>
+                        <input type="text" id="username" placeholder="Enter your Player ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn">Login to Free Fire</button>
+                    </div>
+                    <div class="form-group" style="text-align: center; margin-top: 20px;">
+                        <a href="#" style="color: #ffce00; text-decoration: none;">Forgot Password?</a>
+                    </div>
+                </form>
+                
+                <div class="social-login">
+                    <div class="social-btn"><i class="fab fa-facebook-f"></i></div>
+                    <div class="social-btn"><i class="fab fa-google"></i></div>
+                    <div class="social-btn"><i class="fab fa-vk"></i></div>
+                    <div class="social-btn"><i class="fab fa-twitter"></i></div>
+                </div>
+            </section>
+            
+            <!-- Profile Section -->
+            <section class="profile-section">
+                <h2 class="section-title"><i class="fas fa-user-circle"></i> Player Profile</h2>
+                
+                <div class="profile-header">
+                    <div class="avatar">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="user-info">
+                        <h2>PRO_PLAYER</h2>
+                        <p>ID: 987654321</p>
+                        <p>Level 58</p>
+                        <div class="level-bar">
+                            <div class="level-progress"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">12,450</div>
+                        <div class="stat-label">Diamonds</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">327</div>
+                        <div class="stat-label">Kills</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">86</div>
+                        <div class="stat-label">Wins</div>
+                    </div>
+                </div>
+                
+                <div class="rewards-section">
+                    <h3 style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-gift" style="color: #ffce00;"></i> Available Rewards
+                    </h3>
+                    <div class="rewards-grid">
+                        <div class="reward-card">
+                            <div class="reward-icon"><i class="fas fa-gem"></i></div>
+                            <div class="reward-title">Daily Diamonds</div>
+                            <div class="reward-desc">50 Diamonds</div>
+                            <button class="reward-btn">Claim Now</button>
+                        </div>
+                        <div class="reward-card">
+                            <div class="reward-icon"><i class="fas fa-gun"></i></div>
+                            <div class="reward-title">Weapon Skin</div>
+                            <div class="reward-desc">AK47 - Dragon</div>
+                            <button class="reward-btn">Claim Now</button>
+                        </div>
+                        <div class="reward-card">
+                            <div class="reward-icon"><i class="fas fa-tshirt"></i></div>
+                            <div class="reward-title">Character Outfit</div>
+                            <div class="reward-desc">DJ Alok - Neon</div>
+                            <button class="reward-btn">Claim Now</button>
+                        </div>
+                        <div class="reward-card">
+                            <div class="reward-icon"><i class="fas fa-medal"></i></div>
+                            <div class="reward-title">Rank Booster</div>
+                            <div class="reward-desc">+500 XP</div>
+                            <button class="reward-btn">Claim Now</button>
+                        </div>
+                        <div class="reward-card">
+                            <div class="reward-icon"><i class="fas fa-ticket-alt"></i></div>
+                            <div class="reward-title">Lucky Spin</div>
+                            <div class="reward-desc">Free Spin Token</div>
+                            <button class="reward-btn">Claim Now</button>
+                        </div>
+                        <div class="reward-card">
+                            <div class="reward-icon"><i class="fas fa-coins"></i></div>
+                            <div class="reward-title">Gold Royale</div>
+                            <div class="reward-desc">2000 Gold</div>
+                            <button class="reward-btn">Claim Now</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer class="footer">
+            <p>© 2023 Free Fire Rewards. This is a fan-made website and is not affiliated with Garena or Free Fire.</p>
+            <p>All game content and assets are trademarks of their respective owners.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if(username && password) {
+                // Show success message
+                alert(`Welcome back, ${username}! Redirecting to your profile...`);
+                
+                // In a real app, you would redirect to the profile page
+                // window.location.href = 'profile.html';
+                
+                // For this demo, we'll just focus on the profile section
+                document.querySelector('.profile-section').scrollIntoView({behavior: 'smooth'});
+            } else {
+                alert('Please enter both username and password!');
+            }
+        });
+        
+        // Reward claim buttons
+        const claimButtons = document.querySelectorAll('.reward-btn');
+        claimButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const rewardCard = this.closest('.reward-card');
+                const rewardTitle = rewardCard.querySelector('.reward-title').textContent;
+                
+                // Disable button and show claimed state
+                this.textContent = 'Claimed!';
+                this.disabled = true;
+                this.style.background = 'rgba(0, 255, 0, 0.1)';
+                this.style.color = '#0f0';
+                
+                // Show notification
+                alert(`Congratulations! You've claimed the ${rewardTitle} reward!`);
+            });
+        });
+        
+        // Floating animation for diamonds
+        const diamonds = document.querySelectorAll('.diamonds');
+        diamonds.forEach((diamond, index) => {
+            // Randomize initial positions and animations
+            const delay = Math.random() * 5;
+            const duration = 8 + Math.random() * 7;
+            
+            diamond.style.animation = `float ${duration}s ${delay}s infinite ease-in-out`;
+        });
+        
+        // Add keyframes for floating animation
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(`
+            @keyframes float {
+                0% { transform: translateY(0) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(10deg); }
+                100% { transform: translateY(0) rotate(0deg); }
+            }
+        `, styleSheet.cssRules.length);
+    </script>
+</body>
+</html>
